@@ -2,10 +2,12 @@ Locales = Locales or {}
 
 Locales['en'] = {
     prompt = 'Press [E] to access Hub Bank',
+    atmPrompt = 'Press [E] to use ATM',
+    atmNoCardPrompt = 'Bank card required',
     ui = {
         close = 'Close',
         eyebrow = 'Private Ledger',
-        headline = 'Banking',
+        headline = 'Control every credit pulse.',
         subtext = 'Move cash between wallet and vault in seconds. Clean, fast, unmistakable.',
         clientLabel = 'Client',
         cashLabel = 'Cash',
@@ -21,7 +23,17 @@ Locales['en'] = {
         previewUpdate = 'Preview mode update.',
         invalidAmount = 'Enter a valid amount.',
         success = 'Success.',
-        failed = 'Transaction failed.'
+        failed = 'Transaction failed.',
+        atmNote = 'ATM mode: enter your PIN to continue.',
+        cardTitle = 'Bank Card',
+        cardSubtext = 'Create a card and PIN to use ATMs.',
+        pinLabel = 'PIN (4 digits)',
+        pinPlaceholder = 'Enter PIN',
+        createCard = 'Create Card',
+        pinTitle = 'Insert Card',
+        pinPrompt = 'Enter your PIN to unlock ATM access.',
+        pinSubmit = 'Unlock',
+        pinSuccess = 'PIN accepted.'
     },
     server = {
         invalidAmount = 'Enter a valid amount',
@@ -29,6 +41,12 @@ Locales['en'] = {
         notEnoughBank = 'Not enough bank balance',
         depositSuccess = 'Deposit complete',
         withdrawSuccess = 'Withdrawal complete',
-        noPlayer = 'Player not found'
+        noPlayer = 'Player not found',
+        noCard = 'Bank card required',
+        invalidPin = 'Enter a valid PIN',
+        pinFail = 'Incorrect PIN',
+        pinSuccess = 'PIN accepted',
+        cardCreated = 'Bank card created',
+        cardCreateFail = 'Card creation failed'
     }
 }

@@ -2,10 +2,12 @@ Locales = Locales or {}
 
 Locales['ja'] = {
     prompt = 'EキーでHub Bankを開く',
+    atmPrompt = 'EキーでATMを使う',
+    atmNoCardPrompt = '銀行カードが必要です',
     ui = {
         close = '閉じる',
         eyebrow = 'PRIVATE LEDGER',
-        headline = '銀行',
+        headline = '資金の流れを支配せよ。',
         subtext = '財布と金庫の間で、即時に資金を移動。速く、静かに、正確に。',
         clientLabel = 'CLIENT',
         cashLabel = '現金',
@@ -21,7 +23,17 @@ Locales['ja'] = {
         previewUpdate = 'プレビュー更新',
         invalidAmount = '正しい金額を入力してください。',
         success = '完了しました。',
-        failed = '取引に失敗しました。'
+        failed = '取引に失敗しました。',
+        atmNote = 'ATMモード: PINを入力してください。',
+        cardTitle = '銀行カード',
+        cardSubtext = 'ATM利用にはカードとPINが必要です。',
+        pinLabel = 'PIN(4桁)',
+        pinPlaceholder = 'PINを入力',
+        createCard = 'カード作成',
+        pinTitle = 'カードを挿入',
+        pinPrompt = 'PINを入力してATMを解除してください。',
+        pinSubmit = '解除',
+        pinSuccess = 'PIN承認'
     },
     server = {
         invalidAmount = '正しい金額を入力してください',
@@ -29,6 +41,12 @@ Locales['ja'] = {
         notEnoughBank = '銀行残高が足りません',
         depositSuccess = '入金完了',
         withdrawSuccess = '出金完了',
-        noPlayer = 'プレイヤーが見つかりません'
+        noPlayer = 'プレイヤーが見つかりません',
+        noCard = '銀行カードが必要です',
+        invalidPin = '正しいPINを入力してください',
+        pinFail = 'PINが違います',
+        pinSuccess = 'PIN承認',
+        cardCreated = '銀行カードを作成しました',
+        cardCreateFail = 'カード作成に失敗しました'
     }
 }
