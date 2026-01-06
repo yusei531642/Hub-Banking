@@ -8,6 +8,8 @@ Config = {
         scale = 0.6
     },
     zoneRadius = 3.0,
+    atmDistance = 1.6,
+    atmModels = { 'prop_atm_01', 'prop_atm_02', 'prop_atm_03', 'prop_fleeca_atm' },
     locations = {
         vector3(149.05, -1041.3, 29.37),
         vector3(313.32, -280.03, 54.17),

@@ -55,6 +55,16 @@
                     <button class="btn ghost" id="withdrawBtn">Withdraw</button>
                 </div>
                 <p class="note" id="noteText">Transactions update instantly with an encrypted handoff.</p>
+
+                <div class="card" id="cardSection">
+                    <div class="card-head">
+                        <p class="card-title" id="cardTitle">Bank Card</p>
+                        <p class="card-subtext" id="cardSubtext">Create a card and PIN to use ATMs.</p>
+                    </div>
+                    <label class="card-label" for="cardPin" id="pinLabel">PIN (4 digits)</label>
+                    <input id="cardPin" type="password" inputmode="numeric" maxlength="4" placeholder="Enter PIN" />
+                    <button class="btn ghost" id="createCardBtn">Create Card</button>
+                </div>
             </div>
 
             <div class="panel status">
@@ -65,6 +75,18 @@
             </div>
         </section>
     </main>
+
+    <div class="pin-modal" id="pinModal" aria-hidden="true">
+        <div class="pin-card">
+            <p class="pin-title" id="pinTitle">Insert Card</p>
+            <p class="pin-prompt" id="pinPrompt">Enter your PIN to unlock ATM access.</p>
+            <input id="pinInput" type="password" inputmode="numeric" maxlength="4" placeholder="Enter PIN" />
+            <div class="pin-actions">
+                <button class="btn primary" id="pinSubmit">Unlock</button>
+                <button class="btn ghost" id="pinCancel">Cancel</button>
+            </div>
+        </div>
+    </div>
 
     <script src="script.js"></script>
 </body>

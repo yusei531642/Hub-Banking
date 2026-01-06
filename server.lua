@@ -16,10 +16,68 @@ local function buildPlayerData(Player)
     }
 end
 
+local function getBankCards(Player)
+    return Player.Functions.GetItemsByName('bank_card')
+end
+
 QBCore.Functions.CreateCallback('hub-banking:server:getData', function(source, cb)
     local Player = QBCore.Functions.GetPlayer(source)
     if not Player then return cb(nil) end
     cb(buildPlayerData(Player))
+end)
+
+QBCore.Functions.CreateCallback('hub-banking:server:canUseAtm', function(source, cb)
+    local Player = QBCore.Functions.GetPlayer(source)
+    if not Player then return cb({ success = false, message = t('noPlayer', 'Player not found') }) end
+    local cards = getBankCards(Player)
+    if not cards or #cards == 0 then
+        return cb({ success = false, message = t('noCard', 'Bank card required') })
+    end
+    cb({ success = true })
+end)
+
+QBCore.Functions.CreateCallback('hub-banking:server:verifyPin', function(source, cb, data)
+    local Player = QBCore.Functions.GetPlayer(source)
+    if not Player then return cb({ success = false, message = t('noPlayer', 'Player not found') }) end
+
+    local pin = tonumber(data.pin)
+    if not pin then
+        return cb({ success = false, message = t('invalidPin', 'Enter a valid PIN') })
+    end
+
+    local cards = getBankCards(Player) or {}
+    for _, card in ipairs(cards) do
+        if card.info and tonumber(card.info.cardPin) == pin then
+            return cb({ success = true, message = t('pinSuccess', 'PIN accepted') })
+        end
+    end
+
+    cb({ success = false, message = t('pinFail', 'Incorrect PIN') })
+end)
+
+QBCore.Functions.CreateCallback('hub-banking:server:orderCard', function(source, cb, data)
+    local Player = QBCore.Functions.GetPlayer(source)
+    if not Player then return cb({ success = false, message = t('noPlayer', 'Player not found') }) end
+
+    local pin = tonumber(data.pin)
+    if not pin or pin < 1000 or pin > 9999 then
+        return cb({ success = false, message = t('invalidPin', 'Enter a valid PIN') })
+    end
+
+    local cardNumber = math.random(1000000000000000, 9999999999999999)
+    local info = {
+        citizenid = Player.PlayerData.citizenid,
+        name = Player.PlayerData.charinfo.firstname .. ' ' .. Player.PlayerData.charinfo.lastname,
+        cardNumber = cardNumber,
+        cardPin = pin,
+    }
+
+    local added = exports['qb-inventory']:AddItem(source, 'bank_card', 1, false, info, 'hub-banking:server:orderCard')
+    if not added then
+        return cb({ success = false, message = t('cardCreateFail', 'Card creation failed') })
+    end
+
+    cb({ success = true, message = t('cardCreated', 'Bank card created') })
 end)
 
 QBCore.Functions.CreateCallback('hub-banking:server:deposit', function(source, cb, data)
