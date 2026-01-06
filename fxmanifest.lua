@@ -7,6 +7,7 @@ description 'Custom bank UI with deposit/withdraw at bank locations'
 version '1.0.0'
 
 shared_scripts {
+    'locales/*.lua',
     'config.lua'
 }
 

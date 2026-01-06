@@ -1,4 +1,5 @@
 Config = {
+    locale = 'ja',
     showBlips = true,
     blipInfo = {
         name = 'Hub Bank',
@@ -6,7 +7,6 @@ Config = {
         color = 3,
         scale = 0.6
     },
-    promptText = 'Press [E] to access Hub Bank',
     zoneRadius = 3.0,
     locations = {
         vector3(149.05, -1041.3, 29.37),
@@ -19,3 +19,9 @@ Config = {
         vector3(-111.98, 6470.56, 31.63)
     }
 }
+
+if Locales and Locales[Config.locale] then
+    Config.text = Locales[Config.locale]
+elseif Locales and Locales['en'] then
+    Config.text = Locales['en']
+end

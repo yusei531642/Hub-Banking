@@ -22,12 +22,12 @@
 
         <section class="hero">
             <div class="hero-copy">
-                <p class="eyebrow">Private Ledger</p>
-                <h1>Control every credit pulse.</h1>
-                <p class="subtext">Move cash between wallet and vault in seconds. Clean, fast, unmistakable.</p>
+                <p class="eyebrow" id="eyebrowText">Private Ledger</p>
+                <h1 id="headlineText">Control every credit pulse.</h1>
+                <p class="subtext" id="subtextText">Move cash between wallet and vault in seconds. Clean, fast, unmistakable.</p>
             </div>
             <div class="hero-chip">
-                <p class="chip-label">Client</p>
+                <p class="chip-label" id="clientLabel">Client</p>
                 <p class="chip-name" id="playerName">Loading...</p>
                 <p class="chip-id" id="playerId">--</p>
             </div>
@@ -36,29 +36,29 @@
         <section class="grid">
             <div class="panel balances">
                 <div class="balance">
-                    <p class="label">Cash</p>
+                    <p class="label" id="cashLabel">Cash</p>
                     <p class="value" id="cashValue">$0</p>
                 </div>
                 <div class="balance">
-                    <p class="label">Bank</p>
+                    <p class="label" id="bankLabel">Bank</p>
                     <p class="value" id="bankValue">$0</p>
                 </div>
             </div>
 
             <div class="panel action">
                 <div class="input-wrap">
-                    <label for="amount">Amount</label>
+                    <label for="amount" id="amountLabel">Amount</label>
                     <input id="amount" type="number" placeholder="Enter amount" min="1" />
                 </div>
                 <div class="buttons">
                     <button class="btn primary" id="depositBtn">Deposit</button>
                     <button class="btn ghost" id="withdrawBtn">Withdraw</button>
                 </div>
-                <p class="note">Transactions update instantly with an encrypted handoff.</p>
+                <p class="note" id="noteText">Transactions update instantly with an encrypted handoff.</p>
             </div>
 
             <div class="panel status">
-                <p class="status-title">Activity</p>
+                <p class="status-title" id="activityLabel">Activity</p>
                 <div class="status-feed" id="statusFeed">
                     <p class="status-item">Awaiting action...</p>
                 </div>

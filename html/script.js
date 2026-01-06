@@ -9,6 +9,23 @@ const playerName = document.getElementById('playerName');
 const playerId = document.getElementById('playerId');
 const statusFeed = document.getElementById('statusFeed');
 
+const localeTargets = {
+    close: document.getElementById('closeBtn'),
+    eyebrow: document.getElementById('eyebrowText'),
+    headline: document.getElementById('headlineText'),
+    subtext: document.getElementById('subtextText'),
+    clientLabel: document.getElementById('clientLabel'),
+    cashLabel: document.getElementById('cashLabel'),
+    bankLabel: document.getElementById('bankLabel'),
+    amountLabel: document.getElementById('amountLabel'),
+    deposit: document.getElementById('depositBtn'),
+    withdraw: document.getElementById('withdrawBtn'),
+    note: document.getElementById('noteText'),
+    activity: document.getElementById('activityLabel')
+};
+
+let uiStrings = {};
+
 const formatMoney = (value) => {
     const number = Number(value || 0);
     return number.toLocaleString('en-US', { style: 'currency', currency: 'USD', maximumFractionDigits: 0 });
@@ -30,6 +47,20 @@ const pushStatus = (message, type) => {
     }
 };
 
+const applyLocale = (ui = {}) => {
+    uiStrings = ui;
+    Object.entries(localeTargets).forEach(([key, element]) => {
+        if (ui[key] && element) {
+            element.textContent = ui[key];
+        }
+    });
+    if (ui.amountPlaceholder) {
+        amountInput.placeholder = ui.amountPlaceholder;
+    }
+};
+
+const t = (key, fallback) => uiStrings[key] || fallback;
+
 const closeApp = () => {
     if (typeof GetParentResourceName === 'function') {
         fetch(`https://${GetParentResourceName()}/close`, { method: 'POST' });
@@ -41,7 +72,7 @@ const closeApp = () => {
 const handleTransaction = async (type) => {
     const amount = Number(amountInput.value);
     if (!amount || amount <= 0) {
-        pushStatus('Enter a valid amount.', 'error');
+        pushStatus(t('invalidAmount', 'Enter a valid amount.'), 'error');
         return;
     }
 
@@ -52,7 +83,7 @@ const handleTransaction = async (type) => {
         const nextBank = type === 'deposit' ? currentBank + amount : currentBank - amount;
         setBalances(nextCash, nextBank);
         amountInput.value = '';
-        pushStatus('Preview mode update.', 'success');
+        pushStatus(t('previewUpdate', 'Preview mode update.'), 'success');
         return;
     }
 
@@ -66,19 +97,22 @@ const handleTransaction = async (type) => {
     if (result.success) {
         setBalances(result.cash, result.bank);
         amountInput.value = '';
-        pushStatus(result.message || 'Success.', 'success');
+        pushStatus(result.message || t('success', 'Success.'), 'success');
     } else {
-        pushStatus(result.message || 'Transaction failed.', 'error');
+        pushStatus(result.message || t('failed', 'Transaction failed.'), 'error');
     }
 };
 
 window.addEventListener('message', (event) => {
-    const { action, data } = event.data;
+    const { action, data, locale } = event.data;
     if (action === 'open') {
+        if (locale) {
+            applyLocale(locale);
+        }
         playerName.textContent = data.name || 'Player';
         playerId.textContent = data.citizenid || '--';
         setBalances(data.cash, data.bank);
-        statusFeed.innerHTML = '<p class="status-item">Awaiting action...</p>';
+        statusFeed.innerHTML = `<p class="status-item">${t('awaiting', 'Awaiting action...')}</p>`;
         app.classList.add('show');
         app.setAttribute('aria-hidden', 'false');
         amountInput.focus();
@@ -97,10 +131,11 @@ window.addEventListener('keydown', (event) => {
 });
 
 if (typeof GetParentResourceName !== 'function') {
+    applyLocale({});
     playerName.textContent = 'Preview User';
     playerId.textContent = 'LOCAL-PREVIEW';
     setBalances(2450, 18250);
-    statusFeed.innerHTML = '<p class="status-item">Preview mode loaded.</p>';
+    statusFeed.innerHTML = `<p class="status-item">${t('preview', 'Preview mode loaded.')}</p>`;
     app.classList.add('show');
     app.setAttribute('aria-hidden', 'false');
 }

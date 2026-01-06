@@ -2,6 +2,7 @@ local QBCore = exports['qb-core']:GetCoreObject()
 local zones = {}
 local isPlayerInsideBankZone = false
 local isUiOpen = false
+local Text = Config.text or {}
 
 local function OpenBank()
     if isUiOpen then return end
@@ -11,7 +12,8 @@ local function OpenBank()
         SetNuiFocus(true, true)
         SendNUIMessage({
             action = 'open',
-            data = data
+            data = data,
+            locale = Text.ui or {}
         })
     end)
 end
@@ -67,7 +69,8 @@ CreateThread(function()
     combo:onPlayerInOut(function(isPointInside)
         isPlayerInsideBankZone = isPointInside
         if isPlayerInsideBankZone then
-            exports['qb-core']:DrawText(Config.promptText)
+            local prompt = Text.prompt or 'Press [E] to access Hub Bank'
+            exports['qb-core']:DrawText(prompt)
             CreateThread(function()
                 while isPlayerInsideBankZone do
                     Wait(0)
