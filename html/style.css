@@ -1,0 +1,315 @@
+@import url('https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@400;500;600;700&family=Unbounded:wght@500;700&display=swap');
+
+:root {
+    color-scheme: only light;
+    --ink: #0e0f13;
+    --ink-soft: #1b1f2a;
+    --white: #f8f5f0;
+    --ice: #e7f3ff;
+    --accent: #ff6b35;
+    --accent-2: #0bbf9a;
+    --accent-3: #f3c969;
+    --glass: rgba(255, 255, 255, 0.12);
+    --glass-strong: rgba(255, 255, 255, 0.2);
+}
+
+* {
+    box-sizing: border-box;
+}
+
+body {
+    margin: 0;
+    min-height: 100vh;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: 4vh 0;
+    font-family: 'Space Grotesk', sans-serif;
+    background: transparent;
+    color: var(--ink);
+    overflow: hidden;
+}
+
+.backdrop {
+    display: none;
+}
+
+.app {
+    position: relative;
+    z-index: 1;
+    width: min(1100px, 94vw);
+    margin: 0;
+    padding: 36px 36px 28px;
+    border-radius: 32px;
+    background: rgba(255, 255, 255, 0.65);
+    box-shadow: 0 30px 60px rgba(13, 15, 19, 0.2);
+    backdrop-filter: blur(24px);
+    opacity: 0;
+    transform: translateY(20px) scale(0.98);
+    transition: opacity 0.4s ease, transform 0.45s ease;
+    pointer-events: none;
+}
+
+.app.show {
+    opacity: 1;
+    transform: translateY(0) scale(1);
+    pointer-events: auto;
+}
+
+.header {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    margin-bottom: 26px;
+}
+
+.logo {
+    display: flex;
+    align-items: center;
+    gap: 16px;
+}
+
+.logo-mark {
+    width: 44px;
+    height: 44px;
+    border-radius: 14px;
+    background: linear-gradient(140deg, var(--accent), var(--accent-2));
+    box-shadow: 0 10px 30px rgba(11, 191, 154, 0.4);
+    position: relative;
+}
+
+.logo-mark::after {
+    content: '';
+    position: absolute;
+    inset: 9px;
+    border-radius: 10px;
+    border: 2px solid rgba(255, 255, 255, 0.6);
+}
+
+.logo-title {
+    margin: 0;
+    font-family: 'Unbounded', sans-serif;
+    letter-spacing: 0.2em;
+    font-size: 14px;
+}
+
+.logo-subtitle {
+    margin: 0;
+    font-size: 12px;
+    color: rgba(14, 15, 19, 0.65);
+    text-transform: uppercase;
+    letter-spacing: 0.4em;
+}
+
+.close {
+    border: none;
+    background: var(--ink);
+    color: white;
+    padding: 10px 18px;
+    border-radius: 999px;
+    font-size: 12px;
+    letter-spacing: 0.2em;
+    text-transform: uppercase;
+    cursor: pointer;
+    transition: transform 0.2s ease, box-shadow 0.2s ease;
+}
+
+.close:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 12px 24px rgba(14, 15, 19, 0.2);
+}
+
+.hero {
+    display: grid;
+    grid-template-columns: 1.2fr 0.8fr;
+    gap: 24px;
+    align-items: center;
+    margin-bottom: 28px;
+}
+
+.hero h1 {
+    font-size: 34px;
+    margin: 8px 0 10px;
+    font-family: 'Unbounded', sans-serif;
+}
+
+.eyebrow {
+    text-transform: uppercase;
+    letter-spacing: 0.3em;
+    font-size: 12px;
+    color: rgba(14, 15, 19, 0.6);
+    margin: 0;
+}
+
+.subtext {
+    margin: 0;
+    max-width: 420px;
+    color: rgba(14, 15, 19, 0.7);
+}
+
+.hero-chip {
+    padding: 20px;
+    border-radius: 18px;
+    background: linear-gradient(135deg, rgba(11, 191, 154, 0.25), rgba(255, 255, 255, 0.6));
+    box-shadow: inset 0 0 0 1px rgba(255, 255, 255, 0.5);
+}
+
+.chip-label {
+    margin: 0;
+    font-size: 11px;
+    text-transform: uppercase;
+    letter-spacing: 0.4em;
+    color: rgba(14, 15, 19, 0.55);
+}
+
+.chip-name {
+    margin: 8px 0 2px;
+    font-size: 20px;
+    font-weight: 600;
+}
+
+.chip-id {
+    margin: 0;
+    font-size: 12px;
+    color: rgba(14, 15, 19, 0.6);
+}
+
+.grid {
+    display: grid;
+    grid-template-columns: repeat(3, minmax(0, 1fr));
+    gap: 18px;
+}
+
+.panel {
+    padding: 22px;
+    border-radius: 20px;
+    background: var(--glass);
+    border: 1px solid rgba(255, 255, 255, 0.4);
+    box-shadow: 0 14px 30px rgba(14, 15, 19, 0.08);
+}
+
+.balances {
+    display: grid;
+    gap: 16px;
+}
+
+.balance {
+    padding: 14px 16px;
+    border-radius: 16px;
+    background: rgba(255, 255, 255, 0.7);
+}
+
+.balance .label {
+    margin: 0;
+    font-size: 12px;
+    text-transform: uppercase;
+    letter-spacing: 0.3em;
+    color: rgba(14, 15, 19, 0.6);
+}
+
+.balance .value {
+    margin: 8px 0 0;
+    font-size: 24px;
+    font-weight: 600;
+}
+
+.action {
+    display: grid;
+    gap: 16px;
+}
+
+.input-wrap label {
+    font-size: 12px;
+    text-transform: uppercase;
+    letter-spacing: 0.2em;
+}
+
+.input-wrap input {
+    margin-top: 8px;
+    width: 100%;
+    padding: 12px 14px;
+    border-radius: 12px;
+    border: 1px solid rgba(14, 15, 19, 0.1);
+    background: rgba(255, 255, 255, 0.8);
+    font-size: 16px;
+    outline: none;
+}
+
+.buttons {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 12px;
+}
+
+.btn {
+    border: none;
+    border-radius: 14px;
+    padding: 12px 16px;
+    font-size: 14px;
+    font-weight: 600;
+    text-transform: uppercase;
+    letter-spacing: 0.2em;
+    cursor: pointer;
+    transition: transform 0.2s ease, box-shadow 0.2s ease;
+}
+
+.btn.primary {
+    background: linear-gradient(140deg, var(--accent), var(--accent-3));
+    color: var(--ink);
+}
+
+.btn.ghost {
+    background: var(--ice);
+    color: var(--ink-soft);
+}
+
+.btn:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 12px 24px rgba(14, 15, 19, 0.15);
+}
+
+.note {
+    font-size: 12px;
+    color: rgba(14, 15, 19, 0.6);
+}
+
+.status-title {
+    margin: 0 0 12px;
+    font-size: 12px;
+    text-transform: uppercase;
+    letter-spacing: 0.3em;
+}
+
+.status-feed {
+    display: grid;
+    gap: 10px;
+}
+
+.status-item {
+    margin: 0;
+    padding: 12px;
+    border-radius: 12px;
+    background: rgba(255, 255, 255, 0.8);
+    font-size: 13px;
+}
+
+.status-item.success {
+    border-left: 4px solid var(--accent-2);
+}
+
+.status-item.error {
+    border-left: 4px solid #e04545;
+}
+
+@media (max-width: 920px) {
+    .hero {
+        grid-template-columns: 1fr;
+    }
+
+    .grid {
+        grid-template-columns: 1fr;
+    }
+}
+
+
+

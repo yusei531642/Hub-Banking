@@ -1,0 +1,71 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Hub Banking</title>
+    <link rel="stylesheet" href="style.css" />
+</head>
+<body>
+    <div class="backdrop"></div>
+    <main id="app" class="app" aria-hidden="true">
+        <header class="header">
+            <div class="logo">
+                <span class="logo-mark"></span>
+                <div class="logo-text">
+                    <p class="logo-title">HUB</p>
+                    <p class="logo-subtitle">BANKING</p>
+                </div>
+            </div>
+            <button class="close" id="closeBtn" aria-label="Close">Close</button>
+        </header>
+
+        <section class="hero">
+            <div class="hero-copy">
+                <p class="eyebrow">Private Ledger</p>
+                <h1>Control every credit pulse.</h1>
+                <p class="subtext">Move cash between wallet and vault in seconds. Clean, fast, unmistakable.</p>
+            </div>
+            <div class="hero-chip">
+                <p class="chip-label">Client</p>
+                <p class="chip-name" id="playerName">Loading...</p>
+                <p class="chip-id" id="playerId">--</p>
+            </div>
+        </section>
+
+        <section class="grid">
+            <div class="panel balances">
+                <div class="balance">
+                    <p class="label">Cash</p>
+                    <p class="value" id="cashValue">$0</p>
+                </div>
+                <div class="balance">
+                    <p class="label">Bank</p>
+                    <p class="value" id="bankValue">$0</p>
+                </div>
+            </div>
+
+            <div class="panel action">
+                <div class="input-wrap">
+                    <label for="amount">Amount</label>
+                    <input id="amount" type="number" placeholder="Enter amount" min="1" />
+                </div>
+                <div class="buttons">
+                    <button class="btn primary" id="depositBtn">Deposit</button>
+                    <button class="btn ghost" id="withdrawBtn">Withdraw</button>
+                </div>
+                <p class="note">Transactions update instantly with an encrypted handoff.</p>
+            </div>
+
+            <div class="panel status">
+                <p class="status-title">Activity</p>
+                <div class="status-feed" id="statusFeed">
+                    <p class="status-item">Awaiting action...</p>
+                </div>
+            </div>
+        </section>
+    </main>
+
+    <script src="script.js"></script>
+</body>
+</html>
